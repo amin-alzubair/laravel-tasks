@@ -35,7 +35,7 @@
                 </div>
             @endif
         
-            <div class="flex flex-row  mx-0">
+            <div class="flex flex-row  mx-0 container">
                 <div class="flex flex-col mx-3 border rounded-xl bg-white  shadow-md px-2 py-6">
                     <img src="https://tailwindcss.com/_next/static/media/sarah-dayan.a8ff3f1095a58085a82e3bb6aab12eb2.jpg" class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto" alt="">
                     <span class="font-bold text-blue-500 uppercase">name</span>
