@@ -7,10 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Multicaret\Acquaintances\Traits\Friendable;
+use Multicaret\Acquaintances\Traits\CanFollow;
+use Multicaret\Acquaintances\Traits\CanBeFollowed;
+use Multicaret\Acquaintances\Traits\CanLike;
+use Multicaret\Acquaintances\Traits\CanBeLiked;
+use Multicaret\Acquaintances\Traits\CanRate;
+use Multicaret\Acquaintances\Traits\CanBeRated;
+use Multicaret\Acquaintances\Traits\CanBeViewed;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Friendable, CanFollow, CanBeFollowed, CanLike, CanBeLiked, CanBeLiked, CanRate, CanBeRated, CanBeViewed;
 
     /**
      * The attributes that are mass assignable.

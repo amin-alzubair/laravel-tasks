@@ -12,15 +12,15 @@
 @if(session('sucess'))
 <div class="alert flex flex-row justify-center bg-green-500 text-bold rounded-md mx-7 my-2 p-2">{{session('sucess')}}</div>
 @endif
-<div class="mt-8 mx-8 flex justify-center bg-white shadow-md rounded-md">
+<div class="mt-8 mx-8 flex justify-center bg-gray-500 shadow-md rounded-md">
     
     <div class="flex flex-col">
-        <h3 class="text-gray-500 text-sm mt-4 mb-4">CREATE POST</h3>
+        <h3 class="text-white text-md font-semibold mt-4 mb-4">CREATE POST</h3>
 
     <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <textarea name="body" class="ckeditor border-gray-200 rounded-md focus:bg-indigo-300 placeholder:text-sm placeholder:text-gray-500 focus:placeholder:text-violet-700" placeholder="Pleas inter content" id="" cols="30" rows="10"></textarea>
-        <button class="bg-violet-700 py-2 px-4 mt-3 rounded-xl text-white font-semibold hover:bg-violet-900">Add Post</button>
+        <textarea name="body" class="ckeditor border-white bg-gray-400 rounded-xl focus:bg-indigo-300 placeholder:text-sm placeholder:text-gray-500 focus:placeholder:text-violet-700" placeholder="Pleas inter content" id="" cols="30" rows="10"></textarea>
+        <button class="bg-violet-700 py-2 px-4 mt-3 mb-2 rounded-xl text-white font-semibold hover:bg-violet-900">Add Post</button>
     </form>
     </div>
 </div>

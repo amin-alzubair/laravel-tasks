@@ -4,16 +4,16 @@
 @endsection
 @section('content')
 
-<div class="mx-6 my-6 shadow-md bg-white rounded-xl">
+<div class="mx-6 my-6 shadow-md bg-gray-600 rounded-xl">
   <div class="flex justify-between">
     <div class="mx-3">
     <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="User image" srcset="" class="h-16 w-16 rounded-full justify-start">
-    <span class="text-gray-500 py-1">{{$post->user->name}}</span>
+    <span class="text-white font-semibold text-md py-1"><a href="{{route('show.profile',$post->user->id)}}">{{$post->user->name}}</a></span>
     </div>
     <div class="text-gray-500 my-2 mx-4">
       <x-dropdown align="right" width="48">
         <x-slot name="trigger">
-            <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+            <button class="flex items-center text-sm font-medium text-white hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                 <div></div>
 
                 <div class="ml-1">
@@ -44,11 +44,11 @@
     </x-dropdown>
     </div>
  </div> 
- <div class="flex flex-col my-2 mx-3 text-gray-700">
+ <div class="flex flex-col my-2 mx-3 text-white text-base">
    <p class="">
        {!!$post->body!!}
    </p>
-   <div class="text-sm text-gray-500 mx-4 my-3">
+   <div class="text-sm text-orange-500 mx-4 my-3">
        {{$post->publish_at()}}
    </div>
   </div> 
