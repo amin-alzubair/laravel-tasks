@@ -45,6 +45,11 @@ class FriendController extends Controller
 
     public function getFriend($id){
         $user =User::find($id);
-       return view('profile.get-friends',['friends'=>$user->getFriends()]);
+       return view('friends.get-friends',['friends'=>$user->getFriends()]);
+    }
+
+    public function getFriendRequests(){
+        $friendRequests = auth()->user()->getFriendRequests();
+        return view('friends.get-friendsrequests',compact('friendRequests'));
     }
 }

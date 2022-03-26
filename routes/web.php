@@ -4,6 +4,8 @@ use App\Http\Controllers\BlogpostController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
+use App\Notifications\SendMessages;
+//use Notification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +20,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $users = User::with('posts')->get();
+    return view('welcome',['users'=>$users]);
 })->name('home');
+
 
 Route::post('/add-friend',[FriendController::class,'add'])->name('friends.add');
 Route::post('/accept-friend',[FriendController::class,'acceptRequest'])->name('friends.accept');
 Route::post('/deny-friend',[FriendController::class,'denyRequest'])->name('friends.deny');
 Route::post('/unfriend-friend',[FriendController::class,'unfriend'])->name('friends.unfriend');
-Route::get('/get-friend/{id}',[FriendController::class,'getFriend'])->name('get-friends');
+Route::get('/get-friend/{id}',[FriendController::class,'getFriend'])->name('friends.get-friends');
+Route::get('/get-friend-requests',[FriendController::class,'getFriendRequests'])->name('friends.get-friendsrequests');
+
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -35,3 +44,26 @@ Route::post('/update-profile',[ProfileController::class,'updateProfile'])->name(
 Route::resource('/posts',BlogpostController::class);
 
 require __DIR__.'/auth.php';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/notification',function(){
+    auth()->user()->notify(new SendMessages('hi'));
+    return '3';
+});

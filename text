@@ -1,0 +1,23 @@
+ou need a more elaborated database schema to achieve a working private messaging system (their's some pitfalls).
+
+I would advice :
+
+Three tables : threads, notifications, messages.
+
+    A threads table, which has a sender_id and recipient_id. Both users have their own thread in the db, for one he is the sender, for the other he is the recipient. This way you can easily display every conversations involving your authenticated user. Plus, he can delete the conversation and the other user can still access it.
+
+    A thread has many notifications, each notification belongs to a message. This way you can store the messages of each conversations in one table. You can add a viewed flag in the notification so you can display the unread messages.
+
+To sum this up :
+
+Thread Model : belongs to a sender, belongs to a recipient, has many notifications.
+
+Notification Model : belongs to a thread, belongs to a message.
+
+Message Model : has many notifications.
+
+Users : has many threads (either with sender_id or recipient_id as the foreign key)
+
+Each time a user start a conversation you store two threads, one he is the sender, one he is the recipient.
+
+Each time a user post a message in a conversation, you store the message and two notifications, one for both threads.

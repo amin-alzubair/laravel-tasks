@@ -12,12 +12,12 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+        <link rel="stylesheet" href="{{asset('css/all.min.css')}}">
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/app.js') }}"></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-900">
+    <body class="">
+        <div class="min-h-screen bg-slate-300">
             @include('layouts.navigation')
             <!-- Page Content -->
             <main>
@@ -25,5 +25,7 @@
             </main>
         </div>
         @stack('script')
+
+        <script src="{{asset('js/all.min.js')}}"></script>
     </body>
 </html>

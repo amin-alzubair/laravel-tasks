@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="border-b border-gray-100">
+<nav x-data="{ open: false }" class="border-b-4 border-white bg-navColor">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -40,11 +40,15 @@
             </div>
               @endguest
                 @auth
+                <div class="mt-2"><i class="fa-solid fa-bell fa-xl"></i></div>
+                <div class="mt-2"><i class="fa-solid fa-message fa-xl" id="message"></i><div class="-mt-7 text-red-600 text-xl" id="count"></div></div> 
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-white hover:text-gray-200 hover:border-gray-300 focus:outline-none focus:text-gray-300 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->name }}</div>
-
+                            <div class="inline-flex flex-row-reverse justify-center space-x-3">
+                                <div><img class="h-8 w-8 rounded-full" src="{{asset('storage/users-avatar/')}}/{{ Auth::user()->avatar}}" alt=""></div>
+                                
+                            </div>
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -66,6 +70,7 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+                <input type="hidden" id="receiver_id" value="{{auth()->user()->id}}" />
                 @endauth
                
             </div>
@@ -133,3 +138,13 @@
         </div>
     </div>
 </nav>
+<script>
+var userId = document.getElementById('receiver_id').value;
+var count= 1;
+if(userId != null){
+    window.Echo.private(`App.Models.User.`+userId)
+    .notification((notification) => {
+        document.getElementById('count').innerHTML = count++;
+    });
+}
+</script>

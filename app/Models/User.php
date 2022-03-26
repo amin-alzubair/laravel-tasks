@@ -57,4 +57,8 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany(Blogpost::class);
     }
+
+    public function receivesBroadcastNotificationsOn(){
+        return 'App.Models.User.'.$this->id;
+    }
 }

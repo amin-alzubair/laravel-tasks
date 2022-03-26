@@ -3,27 +3,24 @@
 @section('title','Home')
 
 @section('content')
-  <header class="text-orange-500 items-center">
-      <div class="flex justify-between mx-3 my-2">
-          <div>
+  <header class="text-white items-center -mt-3 rounded-b-md shadow-sm" style="background-color: #2180f3">
+      <div class="flex justify-between mx-3 my-2 p-6 text-2xl">
+          
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias officiis temporibus, quod ex fugiat quisquam provident incidunt 
-          </div>
-
-          <div>
-              <h1>Hight qu</h1>
-          </div>
+          
       </div>
   </header>
 
   <section><!--section of articles-->
     <div class="grid md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-3 sm:grid-cols-1">
-        <div class="mt-4 bg-gray-800 shadow-md rounded-md mx-4 my-2 p-2">
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="User image" srcset="" class="h-16 w-16 rounded-full justify-start">
+        <div class="mt-4 mx-4 my-2 p-2">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="User image" srcset="" class="h-16 w-16 rounded-full justify-start border-2 border-violet-700">
             <span class="text-gray-500">HASSAN</span>
 
-            <p class="text-gray-400">
+            <p class="text-gray-800 mt-3">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis fugit laborum, obcaecati eaque praesentium ipsam, necessitatibus tempora labore magni eum eius, pariatur quibusdam consectetur officia. Recusandae, rem minus! Blanditiis, eum.
             </p>
+            <span class="text-violet-700 text-sm mt-3">1-2-2020</span>
         </div>
 
         <div class="mt-4 bg-gray-800 shadow-md rounded-md mx-4 my-2 p-2">
@@ -259,96 +256,19 @@
 
     <div class="grid  md:grid-cols-3 xl:grid-cols-3 lg:grid-cols-4 sm:grid-cols-1">
         <!-- start-->
+          @foreach ($users as $user)
           <div class="inline-flex bg-gray-800 shadow-md rounded-md  ml-2 mb-2 text-orange-400 space-x-3">
-              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="User image" srcset="" class="h-16 w-16 rounded-full justify-start" alt="" srcset="">
-              <div class="mt-6 text-gray-300 space-x-3">
-                <span >user  name</span>
-                <span>900 friends</span>
-                <span>600 posts</span>
-                <span class="hover:underline hover:text-gray-500">add friend</span>
-              </div>
-          </div>
-
-         <!-- end-->
-
-         <!-- start-->
-         <div class="inline-flex bg-gray-800 shadow-md rounded-md  ml-2 mb-2 text-orange-400 space-x-3">
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="User image" srcset="" class="h-16 w-16 rounded-full justify-start" alt="" srcset="">
+            <img src="{{asset('/storage/users-avatar/')}}/{{$user->avatar}}" alt="User image" srcset="" class="h-16 w-16 rounded-full justify-start p-2" alt="" srcset="">
             <div class="mt-6 text-gray-300 space-x-3">
-              <span >user  name</span>
-              <span>900 friends</span>
-              <span>600 posts</span>
-              <span class="hover:underline hover:text-gray-500">add friend</span>
+              <span >{{$user->name}}</span>
+              <span>{{$user->getFriendsCount()}} friends</span>
+              <span>{{$user->posts->count()}} Posts</span>
+              <span class="hover:underline hover:text-gray-500"><a href="{{route('show.profile',$user->id)}}">Show Profile</a></span>
             </div>
         </div>
+          @endforeach
 
-       <!-- end-->
-
-       <!-- start-->
-       <div class="inline-flex bg-gray-800 shadow-md rounded-md  ml-2 mb-2 text-orange-400 space-x-3">
-        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="User image" srcset="" class="h-16 w-16 rounded-full justify-start" alt="" srcset="">
-        <div class="mt-6 text-gray-300 space-x-3">
-          <span >user  name</span>
-          <span>900 friends</span>
-          <span>600 posts</span>
-          <span class="hover:underline hover:text-gray-500">add friend</span>
-        </div>
-    </div>
-
-   <!-- end-->
-
-   <!-- start-->
-   <div class="inline-flex bg-gray-800 shadow-md rounded-md  ml-2 mb-2 text-orange-400 space-x-3">
-    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="User image" srcset="" class="h-16 w-16 rounded-full justify-start" alt="" srcset="">
-    <div class="mt-6 text-gray-300 space-x-3">
-      <span >user  name</span>
-      <span>900 friends</span>
-      <span>600 posts</span>
-      <span class="hover:underline hover:text-gray-500">add friend</span>
-    </div>
-</div>
-
-<!-- end-->
-
-<!-- start-->
-<div class="inline-flex bg-gray-800 shadow-md rounded-md  ml-2 mb-2 text-orange-400 space-x-3">
-    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="User image" srcset="" class="h-16 w-16 rounded-full justify-start" alt="" srcset="">
-    <div class="mt-6 text-gray-300 space-x-3">
-      <span >user  name</span>
-      <span>900 friends</span>
-      <span>600 posts</span>
-      <span class="hover:underline hover:text-gray-500">add friend</span>
-    </div>
-</div>
-
-<!-- end-->
-
-<!-- start-->
-<div class="inline-flex bg-gray-800 shadow-md rounded-md  ml-2 mb-2 text-orange-400 space-x-3">
-    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="User image" srcset="" class="h-16 w-16 rounded-full justify-start" alt="" srcset="">
-    <div class="mt-6 text-gray-300 space-x-3">
-      <span >user  name</span>
-      <span>900 friends</span>
-      <span>600 posts</span>
-      <span class="hover:underline hover:text-gray-500">add friend</span>
-    </div>
-</div>
-
-<!-- end-->
-
-<!-- start-->
-<div class="inline-flex bg-gray-800 shadow-md rounded-md  ml-2 mb-2 text-orange-400 space-x-3">
-    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="User image" srcset="" class="h-16 w-16 rounded-full justify-start" alt="" srcset="">
-    <div class="mt-6 text-gray-300 space-x-2">
-      <span class="text-md">user  name</span>
-      <span>900 friends</span>
-      <span>600 posts</span>
-      <span class="hover:underline hover:text-gray-500">add friend</span>
-    </div>
-</div>
-
-<!-- end-->
-         
+         <!-- end-->
     </div>
 
   </section>

@@ -10,7 +10,10 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ['Font-awesmoe', ...defaultTheme.fontFamily.sans],
+            },
+            colors:{
+                navColor:'#2180f3'
             },
         },
     },
