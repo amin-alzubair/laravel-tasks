@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     $users = User::with('posts')->get();
     return view('welcome',['users'=>$users]);
@@ -43,27 +43,19 @@ Route::get('/create-profile',[ProfileController::class,'create']);
 Route::post('/update-profile',[ProfileController::class,'updateProfile'])->name('update.profile');
 Route::resource('/posts',BlogpostController::class);
 
+*/
+
 require __DIR__.'/auth.php';
 
+Route::get('/',function(){
+    return inertia('home');
+})->middleware('auth');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/notification',function(){
-    auth()->user()->notify(new SendMessages('hi'));
-    return '3';
+Route::get('/users',function(){
+    return inertia('users');
 });
+
+Route::get('/settings',function(){
+    return inertia('settings');
+});
+

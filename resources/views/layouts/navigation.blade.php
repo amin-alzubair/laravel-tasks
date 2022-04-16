@@ -1,31 +1,39 @@
-<nav x-data="{ open: false }" class="border-b-4 border-white bg-navColor">
+<nav x-data="{ open: false }" class="w-full fixed  bg-navColor">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
+
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('home') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-white" />
                     </a>
-                </div>
+                </div>  
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @auth
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    @endauth
-
+                    
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                        {{ __('Posts') }}
-                    </x-nav-link>
                 </div>
             </div>
-
+            <!--notifications -->
+            @auth
+                <div class="flex">
+                    <div class="shrink-0 flex  justify-end items-center p-4 space-x-4">
+                        <div class="text-white">
+                            <i class="fa-solid fa-bell fa-xl"></i>
+                        </div>
+                        <div class="text-white">
+                            <a href="{{route('messenger')}}">
+                                <i class="fa-solid fa-message fa-xl" id="message"></i>
+                            </a>
+                            <div class="-mt-7 text-red-400 text-md hidden" id="count"></div>
+                        </div>
+                </div>
+                </div>
+            @endauth
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @guest
@@ -39,9 +47,7 @@
                 </x-nav-link>
             </div>
               @endguest
-                @auth
-                <div class="mt-2"><i class="fa-solid fa-bell fa-xl"></i></div>
-                <div class="mt-2"><i class="fa-solid fa-message fa-xl" id="message"></i><div class="-mt-7 text-red-600 text-xl" id="count"></div></div> 
+        @auth 
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-white hover:text-gray-200 hover:border-gray-300 focus:outline-none focus:text-gray-300 focus:border-gray-300 transition duration-150 ease-in-out">
@@ -71,9 +77,9 @@
                     </x-slot>
                 </x-dropdown>
                 <input type="hidden" id="receiver_id" value="{{auth()->user()->id}}" />
-                @endauth
-               
-            </div>
+            
+        @endauth
+    </div>
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
@@ -90,23 +96,14 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @auth
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-            @endauth
-
             @guest
-            <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">
-                {{ __('Register') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                {{ __('Login') }}
-            </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                    {{ __('Register') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                    {{ __('Login') }}
+                </x-responsive-nav-link>
             @endguest
-            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts')">
-                {{ __('Posts') }}
-            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
@@ -116,8 +113,7 @@
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
                 @auth
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 @endauth
             </div>
 
@@ -134,7 +130,8 @@
                     </x-responsive-nav-link>
                 </form>
                 @endauth
-            </div>
+
+         </div>
         </div>
     </div>
 </nav>
@@ -144,6 +141,8 @@ var count= 1;
 if(userId != null){
     window.Echo.private(`App.Models.User.`+userId)
     .notification((notification) => {
+        console.log(notification.message);
+        document.getElementById('count').style='display:block;';
         document.getElementById('count').innerHTML = count++;
     });
 }

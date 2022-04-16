@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{userId}', function (User $user, $userId) {
     return true;
 });
+
+// Broadcast::channel('private-chatify', function (User $user, $userId) {
+//     return true;
+// });
