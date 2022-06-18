@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class FriendController extends Controller
 {
@@ -12,44 +11,53 @@ class FriendController extends Controller
 
         auth()->user()->befriend(User::findOrfail(request('user_id')));
 
-        return response()->json(['stauts'=>'requested','id'=>'unfriend']);
+        return back();
     }
 
     public function acceptRequest()
     {
         auth()->user()->acceptFriendRequest(User::findOrfail(request('user_id')));
 
-        return response()->json(['stauts' => 'accepted']);
+        return back();
     }
 
     public function denyRequest()
     {
         auth()->user()->denyFriendRequest(User::findOrfail(request('user_id')));
 
-        return response()->json(['stauts' => 'rejected']);
+        return back();
     }
 
     public function unfriend()
     {
         auth()->user()->unfriend(User::findOrfail(request('user_id')));
 
-        return response()->json(['stauts' => 'add friend']);
+        return back();
     }
 
     public function block()
     {
         auth()->user()->blockFriend(User::findOrfail(request('user_id')));
 
-        return response()->json(['stauts' => 'bolcked']);
+        return back();
     }
 
-    public function getFriend($id){
-        $user =User::find($id);
-       return view('friends.get-friends',['friends'=>$user->getFriends()]);
+    public function getFriends($id){
+        $friends =User::find($id)->getFriends()->map(function($friends){
+            return $friends->getFriendsMap($friends);
+        });
+       return inertia('profile/GetFriends',['friends'=>$friends]);
     }
 
     public function getFriendRequests(){
-        $friendRequests = auth()->user()->getFriendRequests();
-        return view('friends.get-friendsrequests',compact('friendRequests'));
+        $friends = auth()->user()->getFriendRequests()->map(function($friend){
+            return [
+                'sender_id'=>$friend->sender_id,
+                'avatar'=>$friend->sender->avatar,
+                'sender_name'=>$friend->sender->name
+            ];
+        });
+
+        return inertia('profile/GetFriendRequests',compact('friends'));
     }
 }

@@ -1,26 +1,31 @@
 <template class="min-h-screen bg-slate-300">
+<Head>
+    <title>Home</title>
+</Head>
      <div>
-        <Nav></Nav>
-      
+       <Nav></Nav>
        <Header></Header>
        <Ppost></Ppost>
-       <Pusers></Pusers>
-       <posts></posts>
+       <Pusers :users="users"></Pusers>
+       <Posts :posts="posts"></Posts>
       </div>
 </template>
 
 <script>
 
-import Nav from "../Shared/Nav"
-import Header from "../Shared/Header"
-import Ppost from "../Pages/Ppost"
-import Pusers from "../Pages/Pusers"
-import posts from "../Pages/posts"
+import Nav      from  "../Shared/Nav"
+import Header   from  "../Shared/Header"
+import Ppost    from  "../Pages/Posts/Ppost.vue"
+import Pusers   from  "../Pages/Pusers"
+import Posts    from  "../Pages/Posts/Posts.vue"
+import { Head } from "@inertiajs/inertia-vue3"
+ 
 export default {
-  props:{
-    freamworks:Array
-  },
-    components:{ Nav, Header, Ppost, Pusers, posts }
+    props:{
+        posts:Array,
+        users:Object
+    },
+    components:{ Nav, Header, Ppost, Pusers, Posts, Head }
 }
 </script>
 

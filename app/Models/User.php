@@ -62,4 +62,19 @@ class User extends Authenticatable
     public function receivesBroadcastNotificationsOn(){
         return 'App.Models.User.'.$this->id;
     }
+
+    public function getFriendsMap($friends)
+    {
+        return [
+            'id'=>$friends->id,
+            'name'=>$friends->name,
+            'avatar'=>$friends->avatar,
+            'sentToOthers' =>auth()->user()->hasSentFriendRequestTo($friends),
+            'sentToYou' =>$friends->hasSentFriendRequestTo(auth()->user()),
+            'isFriendWith'=>auth()->user()->isFriendWith($friends),
+            'friends'=>$friends->getFriends()->take(4),
+            'getFriendsCount'=>$friends->getFriendsCount()
+
+            ];
+    }
 }

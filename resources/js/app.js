@@ -1,14 +1,14 @@
-/*require('./bootstrap');
+require('./bootstrap');
 
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
 
-Alpine.start();*/
+Alpine.start();
 
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
-import {InertiaProgress} from "@inertiajs/progress";
+import { InertiaProgress } from "@inertiajs/progress";
 
 createInertiaApp({
   resolve: name => require(`./Pages/${name}`),
@@ -21,5 +21,5 @@ createInertiaApp({
 
 InertiaProgress.init({
   color:'green',
-  showSpinner:true
+  showSpinner:false
 });

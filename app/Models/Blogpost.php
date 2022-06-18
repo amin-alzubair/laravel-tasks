@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Multicaret\Acquaintances\Traits\CanBeLiked;
 
 class Blogpost extends Model
 {
-    use HasFactory;
+    use HasFactory, CanBeLiked;
     public $table = 'blogposts';
     const PUBLIC      = 1;
     const FRINDE      = 2;
@@ -19,6 +20,9 @@ class Blogpost extends Model
         'visibility',
         'user_id',
     ];
+
+    protected $with = ['user'];
+    
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BlogpostRequest;
 use App\Models\Blogpost;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class BlogpostController extends Controller
 {
@@ -19,9 +21,9 @@ class BlogpostController extends Controller
      */
     public function index()
     {
-        $posts = Blogpost::with('user')->paginate(5);
+        $posts = Blogpost::all();
 
-        return view('posts.index', compact('posts'));
+        return Inertia::render('Posts', ['posts'=>$posts]);
     }
 
     /**
@@ -55,9 +57,19 @@ class BlogpostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Blogpost $post)
-    {
-       
-        return view('posts.show',compact('post'));
+    { 
+        $post = [
+            'id'=>$post->id,
+            'body'=>$post->body,
+            'userid'=>$post->user->id,
+            'username'=>$post->user->name,
+            'useravatar'=>$post->user->avatar,
+            'likersCount'=>$post->likersCount(),
+            'publish_at' => $post->publish_at(),
+            'isLikedBy' =>Auth::check() ? $post->isLikedBy(Auth::user()) : false
+
+        ];
+        return Inertia::render('Posts/Single-post',compact('post'));
     }
 
     /**
