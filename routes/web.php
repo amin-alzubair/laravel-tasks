@@ -105,7 +105,7 @@ Route::get('/settings',function(){
 });
 
 Route::get('star/{post}', function(Blogpost $post){
-    auth()->user()->like($post);
+    auth()->user()->toggleLike($post);
     return back();
 })->middleware('auth');
 //Route::get('/posts',[BlogpostController::class,'index']);

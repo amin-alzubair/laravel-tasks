@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\SendFriendRequestNotification;
 
 class FriendController extends Controller
 {
     public function add()
     {
+        $user = User::findOrfail(request('user_id'));
+        auth()->user()->befriend($user);
 
-        auth()->user()->befriend(User::findOrfail(request('user_id')));
+        $user->notify(new SendFriendRequestNotification());
 
         return back();
     }

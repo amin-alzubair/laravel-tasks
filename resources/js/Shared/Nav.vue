@@ -26,7 +26,7 @@
       <div v-if="$page.props.auth.user" class="flex justify-center items-center mt-0">
         
           <div class="inline-flex justify-between space-x-3 mx-3" >
-          <a :href="'/messenger'" class=" text-white"><i class="fa fa-message fa-xl text-white"></i></a>
+          <a :href="'/messenger'" class="text-white"><span class="h-5 w-5  rounded-full bg-red-500 text-white" v-show="$page.props.unreadMessageCount">{{$page.props.unreadMessageCount}}</span><i class="fa fa-message fa-xl text-white"></i></a>
           <Link :href="'/get-friend-requests'" class="text-white"><span class="h-5 w-5  rounded-full bg-red-500 text-white" v-show="$page.props.friendrequestcount">{{$page.props.friendrequestcount}}</span><i class="fa fa-user-plus fa-xl"></i></Link>
           <a class=" text-white"><i class="fa fa-bell fa-xl"></i></a>
           </div>
@@ -56,6 +56,7 @@
       </div>
     </nav>
   </header>
+     
 </template>
 
 <script>
@@ -63,14 +64,34 @@ import navLink from "../Shared/NavLink"
 import Dropdown from "../Shared/Dropdown"
 import {  Link  } from '@inertiajs/inertia-vue3'
 import icon from '../Shared/Icon'
+import toast from '../Shared/toast.vue'
 
 export default {
 
   props:{name:String},
-  components:{navLink, Dropdown, Link,icon},
+  components:{navLink, Dropdown, Link,icon, toast},
   data() {
     return {
       isOpen: false,
+    }
+  },
+
+  created(){
+
+    if(this.$page.props.auth.user){
+      window.Echo.private(`App.Models.User.${this.$page.props.auth.user.id}`)
+    .notification((notification) => {
+
+      switch(notification.type){
+        case 'App\\Notifications\\SendFriendRequestNotification':
+                  this.$page.props.friendrequestcount++;
+          break;
+
+          case 'App\\Notifications\\SendMessages':
+                  this.$page.props.unreadMessageCount++;
+          break;
+      }
+    });
     }
   }
 }

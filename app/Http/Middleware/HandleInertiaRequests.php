@@ -38,7 +38,8 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'auth.user'=> fn() => $request->user() ? $request->user()->only('id','name','email','avatar') : null,
-            'friendrequestcount'     =>fn() =>$request->user() ? auth()->user()->getFriendRequests()->count():null,
+            'friendrequestcount'     =>fn() =>$request->user() ? auth()->user()->getFriendRequests()->count() : null,
+            'unreadMessageCount'    =>fn()=>$request->user() ? auth()->user()->messages()->where('seen',0)->count() : null,
             'flash'=>[
                 'message'=>   fn()=>  $request->session()->get('message')
             ]

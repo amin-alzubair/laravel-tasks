@@ -1,14 +1,15 @@
-<template class="min-h-screen bg-slate-300">
+<template >
 <Head>
     <title>Home</title>
 </Head>
-     <div>
+<div class="min-h-screen bg-slate-300">
        <Nav></Nav>
        <Header></Header>
        <Ppost></Ppost>
        <Pusers :users="users"></Pusers>
        <Posts :posts="posts"></Posts>
-      </div>
+</div>
+     
 </template>
 
 <script>
