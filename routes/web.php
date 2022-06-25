@@ -72,38 +72,28 @@ require __DIR__.'/auth.php';
 
 Route::get('/',function(){
 
-    // $posts = Blogpost::orderBy('created_at','desc')->get()->map(function($post){
-    //     return [
-    //         'id'             =>$post->id,
-    //         'body'           =>$post->body,
-    //         'username'       =>$post->user->name,
-    //         'avatar'         =>$post->user->avatar,
-    //         'userid'         =>$post->user->id,
-    //         'publish_at'     =>$post->publish_at(),
-    //         'likersCount'     =>$post->likersCount(),
-    //         'isLikedBy'         =>$post->isLikedBy(auth()->user())
-    //     ];
-    // });
-    // $users = User::all()->map(function($user){
-    //     return [
-    //         'id'=>$user->id,
-    //         'name'=>$user->name,
-    //         'avatar'=>$user->avatar,
-    //         'friendCount'=>$user->getFriendsCount(),
-    //         'postCount'=>$user->posts->count()
-    //     ];
-    // })->take(3);
-    // return inertia('home',['users'=>$users,'posts'=>$posts]);
-
-    return "<h1>Hello world!</h1>";
-});
-
-Route::get('/users',function(){
-    return inertia('users');
-});
-
-Route::get('/settings',function(){
-    return inertia('settings');
+    $posts = Blogpost::orderBy('created_at','desc')->get()->map(function($post){
+        return [
+            'id'             =>$post->id,
+            'body'           =>$post->body,
+            'username'       =>$post->user->name,
+            'avatar'         =>$post->user->avatar,
+            'userid'         =>$post->user->id,
+            'publish_at'     =>$post->publish_at(),
+            'likersCount'     =>$post->likersCount(),
+            'isLikedBy'         =>$post->isLikedBy(auth()->user())
+        ];
+    });
+    $users = User::all()->map(function($user){
+        return [
+            'id'=>$user->id,
+            'name'=>$user->name,
+            'avatar'=>$user->avatar,
+            'friendCount'=>$user->getFriendsCount(),
+            'postCount'=>$user->posts->count()
+        ];
+    })->take(3);
+    return inertia('home',['users'=>$users,'posts'=>$posts]);
 });
 
 Route::get('star/{post}', function(Blogpost $post){
