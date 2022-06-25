@@ -47,7 +47,7 @@ Route::resource('/posts',BlogpostController::class);
 
 */
 
-
+/*
 //Profile
 Route::get('/create-profile',[ProfileController::class,'create']);
 Route::post('/update-profile',[ProfileController::class,'updateProfile'])->name('update.profile');
@@ -101,3 +101,9 @@ Route::get('star/{post}', function(Blogpost $post){
     return back();
 })->middleware('auth');
 //Route::get('/posts',[BlogpostController::class,'index']);
+
+*/
+
+Route::get('/', function(){
+    return 'hello';
+});
