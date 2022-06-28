@@ -28424,8 +28424,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_Dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Shared/Dropdown */ "./resources/js/Shared/Dropdown.vue");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _Shared_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Shared/Icon */ "./resources/js/Shared/Icon.vue");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '../Shared/toast.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-
 
 
 
@@ -28439,7 +28437,7 @@ Object(function webpackMissingModule() { var e = new Error("Cannot find module '
     Dropdown: _Shared_Dropdown__WEBPACK_IMPORTED_MODULE_1__["default"],
     Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link,
     icon: _Shared_Icon__WEBPACK_IMPORTED_MODULE_3__["default"],
-    toast: Object(function webpackMissingModule() { var e = new Error("Cannot find module '../Shared/toast.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
+    toast: toast
   },
   data: function data() {
     return {

@@ -64,7 +64,6 @@ import navLink from "../Shared/NavLink"
 import Dropdown from "../Shared/Dropdown"
 import {  Link  } from '@inertiajs/inertia-vue3'
 import icon from '../Shared/Icon'
-import toast from '../Shared/toast.vue'
 
 export default {
 
