@@ -68,7 +68,7 @@ import icon from '../Shared/Icon'
 export default {
 
   props:{name:String},
-  components:{navLink, Dropdown, Link,icon, toast},
+  components:{navLink, Dropdown, Link,icon},
   data() {
     return {
       isOpen: false,

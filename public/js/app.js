@@ -28436,8 +28436,7 @@ __webpack_require__.r(__webpack_exports__);
     navLink: _Shared_NavLink__WEBPACK_IMPORTED_MODULE_0__["default"],
     Dropdown: _Shared_Dropdown__WEBPACK_IMPORTED_MODULE_1__["default"],
     Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link,
-    icon: _Shared_Icon__WEBPACK_IMPORTED_MODULE_3__["default"],
-    toast: toast
+    icon: _Shared_Icon__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
