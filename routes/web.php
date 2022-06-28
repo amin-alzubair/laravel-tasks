@@ -45,9 +45,6 @@ Route::get('/create-profile',[ProfileController::class,'create']);
 Route::post('/update-profile',[ProfileController::class,'updateProfile'])->name('update.profile');
 Route::resource('/posts',BlogpostController::class);
 
-*/
-
-/*
 //Profile
 Route::get('/create-profile',[ProfileController::class,'create']);
 Route::post('/update-profile',[ProfileController::class,'updateProfile'])->name('update.profile');
