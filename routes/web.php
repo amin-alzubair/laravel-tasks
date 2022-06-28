@@ -20,7 +20,7 @@ use Illuminate\Support\Str;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
+
 Route::get('/', function () {
     $users = User::with('posts')->get();
     return view('welcome',['users'=>$users]);
@@ -102,8 +102,3 @@ Route::get('star/{post}', function(Blogpost $post){
 })->middleware('auth');
 //Route::get('/posts',[BlogpostController::class,'index']);
 
-*/
-
-Route::get('/', function(){
-    return 'hello';
-});
