@@ -23,7 +23,10 @@
 
     <Link class="text-violet-700  underline" v-show="user.getFriendsCount > 4" :href="'/get-friends/'+user.id">See more</Link>
     </div>
-  <Posts :posts="posts"></Posts>
+    <div class="bg-slate-300">
+
+      <Posts :posts="posts"></Posts>
+    </div>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
   <section><!--section of articles-->
     <div class="grid md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-3 sm:grid-cols-1">
-        <div class="mt-4 mx-4 my-2 p-2" v-for="post of  posts" :key="post.id">
+        <div class="mt-4 mx-4 my-2 p-2  bg-white shadow-md rounded-lg" v-for="post of  posts" :key="post.id">
             <img :src="'/storage/users-avatar/'+post.avatar" alt="User image" v-if="post.avatar" srcset="" class="h-16 w-16 rounded-full justify-start border-2 border-violet-700">
             <span class="text-gray-500"><Link :href="'/show-profile/'+post.userid" v-if="post.username">{{post.username}}</Link></span>
 
