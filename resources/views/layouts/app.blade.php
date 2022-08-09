@@ -12,7 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{asset('css/all.min.css')}}">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
     </head>
@@ -26,6 +26,6 @@
         </div>
         @stack('script')
 
-        <script src="{{asset('js/all.min.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/all.min.js" integrity="sha512-8pHNiqTlsrRjVD4A/3va++W1sMbUHwWxxRPWNyVlql3T+Hgfd81Qc6FC5WMXDC+tSauxxzp1tgiAvSKFu1qIlA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </body>
 </html>
