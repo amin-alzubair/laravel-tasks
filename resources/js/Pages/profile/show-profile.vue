@@ -14,7 +14,7 @@
     <div  class="flex items-center">
     <div v-for="friend in user.friends" :key="friend">
         <div  class="text-gray-500">
-          <img :src="'/storage/users-avatar/'+friend.avatar" class="h-16 w-16 items-center p-2 mx-2 rounded-full">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" class="h-16 w-16 items-center p-2 mx-2 rounded-full">
             <span class="mx-4"><Link :href="'/show-profile/'+friend.id">{{friend.name}}</Link></span>
         </div>
     </div>
