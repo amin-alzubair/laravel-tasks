@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-navColor  w-full  rounded-sm shadow-md  sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3">
+  <header class="bg-navColor sticky top-0 z-30 w-full rounded-sm shadow-md  sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3">
     <div class="max-w-7xl  px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex">

@@ -25,8 +25,6 @@ Route::get('/', function () {
     $users = User::with('posts')->get();
     return view('welcome',['users'=>$users]);
 })->name('home');
-
-
 //Profile
 Route::get('/create-profile',[ProfileController::class,'create']);
 Route::post('/update-profile',[ProfileController::class,'updateProfile'])->name('update.profile');
